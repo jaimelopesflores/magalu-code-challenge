@@ -1,15 +1,20 @@
 
-def get_all():
-    return 'all'
+class Employee:
 
-def get_by_id(id):
-    return 'get: ' + str(id)
+    def __init__(self, mongo):
+        self.mongo = mongo
 
-def create():
-    return 'create'
+    def get_all(self):
+        return 'all'
 
-def update(id):
-    return 'update: ' + str(id)
+    def get_by_id(self, id):
+        return 'get: ' + str(id)
 
-def remove(id):
-    return 'remove: ' + str(id)
+    def create(self):
+        return 'create'
+
+    def update(self, id):
+        return 'update: ' + str(id)
+
+    def remove(self, id):
+        return 'remove: ' + str(id)
