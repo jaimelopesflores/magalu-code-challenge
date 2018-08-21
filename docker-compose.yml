@@ -7,6 +7,6 @@ services:
     depends_on:
       - mongo
     env_file:
-      - ./service/env/.env.production
+      - ./service/env_files/.env.production
   mongo:
     image: mongo

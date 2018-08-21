@@ -9,15 +9,18 @@ def get_employee(mongo):
     employee = Blueprint('employee', __name__, url_prefix='/employee')
 
     @employee.route('/')
+    @employee.route('')
     def get():
         return jsonify(model.get_all())
 
+    @employee.route('/<objectid>/')
     @employee.route('/<objectid>')
     def get_one(objectid):
         entity = model.get_by_id(objectid)
         return abort(404, 'Employee not found') if entity is None else jsonify(entity)
 
     @employee.route('/', methods=['POST'])
+    @employee.route('', methods=['POST'])
     def post():
         try:
             validate(request.json, schema)
@@ -26,6 +29,7 @@ def get_employee(mongo):
         except ValidationError:
             abort(400, 'Schema is not valid!')
 
+    @employee.route('/<id>/', methods=['PUT'])
     @employee.route('/<id>', methods=['PUT'])
     def put(id):
         try:
@@ -35,6 +39,7 @@ def get_employee(mongo):
         except ValidationError:
             abort(400, 'Schema is not valid!')
 
+    @employee.route('/<id>/', methods=['DELETE'])
     @employee.route('/<id>', methods=['DELETE'])
     def delete(id):
         return jsonify(model.remove(id))
