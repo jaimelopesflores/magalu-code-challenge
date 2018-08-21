@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # config
 app.config.from_object('config')
-app.config["MONGO_URI"] = "mongodb://localhost:27017/magalu"
+app.config["MONGO_URI"] = "mongodb://db:27017/magalu"
 app.json_encoder = Encoder
 
 mongo = PyMongo(app)
