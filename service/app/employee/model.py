@@ -1,3 +1,4 @@
+from bson.objectid import ObjectId
 
 class Employee:
 
@@ -5,16 +6,17 @@ class Employee:
         self.mongo = mongo
 
     def get_all(self):
-        return 'all'
+        cursor = self.mongo.db.employee.find()
+        return list(cursor)
 
     def get_by_id(self, id):
-        return 'get: ' + str(id)
+        return self.mongo.db.employee.find_one({"_id": ObjectId(id)})
 
-    def create(self):
-        return 'create'
+    def create(self, data):
+        return self.mongo.db.employee.insert_one(data).inserted_id
 
-    def update(self, id):
-        return 'update: ' + str(id)
+    def update(self, id, data):
+        return self.mongo.db.employee.find_one_and_update({'_id': ObjectId(id)}, {'$set': data})
 
     def remove(self, id):
-        return 'remove: ' + str(id)
+        return self.mongo.db.employee.remove({"_id": ObjectId(id)})
