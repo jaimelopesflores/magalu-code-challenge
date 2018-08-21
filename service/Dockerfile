@@ -7,5 +7,5 @@ WORKDIR /home/magalu/app
 COPY . .
 RUN pip install -r requirements.txt
 
-EXPOSE 5000
-ENTRYPOINT python run.py
+EXPOSE 8000
+ENTRYPOINT gunicorn --bind 0.0.0.0:8000 wsgi
