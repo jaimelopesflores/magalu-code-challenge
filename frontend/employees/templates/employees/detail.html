@@ -1,0 +1,27 @@
+{% extends 'employees/base.html' %}
+
+{% block title %}
+    Employee details
+{% endblock %}
+{% block content %}
+<form>
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="name">Name:</label>
+        <input readonly class="col-10 form-control" type="text" name="name" id="name" placeholder="What's your name?" value="{{ employee.name }}"/><br />
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="email">E-mail:</label>
+        <input readonly class="col-10 form-control" type="email" name="email" id="email" placeholder="And your e-mail?" value="{{ employee.email }}"/><br />
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="department">Department:</label>
+        <input readonly class="col-10 form-control" type="text" name="department" id="department" placeholder="In which department do you work?" value="{{ employee.department }}"/><br />
+    </div>
+
+    <a class="btn btn-primary" href="/employees/{{ employee.id }}/edit">Edit</a>
+    <a class="btn btn-default" href="/employees">Back</a>
+    <a class="btn btn-danger float-right" href="/employees/{{ employee.id }}/delete">Remove</a>
+</form>
+{% endblock %}
