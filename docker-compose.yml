@@ -1,5 +1,13 @@
 version: "3"
 services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "8001:8001"
+    depends_on:
+      - service
+    env_file:
+      - ./frontend/env_files/.env.production
   service:
     build: ./service
     ports:

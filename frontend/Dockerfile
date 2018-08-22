@@ -8,4 +8,4 @@ COPY . .
 RUN pip install -r requirements.txt
 
 EXPOSE 8001
-ENTRYPOINT python manage.py runserver 8001
+ENTRYPOINT ./start.sh
