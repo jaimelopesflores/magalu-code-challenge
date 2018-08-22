@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
+import os
+import requests
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-import requests
+
+service_url = os.environ.get('SERVICE_URL')
 
 def index(request):
-    response = requests.get('http://localhost:8000/employee')
+    response = requests.get('%s/employee' % service_url)
     context = {'employee_list': response.json()}
     return render(request, 'employees/index.html', context)
 
 def detail(request, id):
-    response = requests.get('http://localhost:8000/employee/%s' % id)
+    response = requests.get('%s/employee/%s' % (service_url, id))
     context = {'employee': response.json()}
     return render(request, 'employees/detail.html', context)
 
@@ -24,11 +27,11 @@ def create(request):
         'email': request.POST['email'] ,
         'department': request.POST['department'] ,
     }
-    requests.post('http://localhost:8000/employee', json=payload)
+    requests.post('%s/employee' % service_url, json=payload)
     return redirect('index')
 
 def edit(request, id):
-    response = requests.get('http://localhost:8000/employee/%s' % id)
+    response = requests.get('%s/employee/%s' % (service_url, id))
     context = {'employee': response.json()}
     return render(request, 'employees/edit.html', context)
 
@@ -38,9 +41,9 @@ def update(request, id):
         'email': request.POST['email'] ,
         'department': request.POST['department'] ,
     }
-    requests.put('http://localhost:8000/employee/%s' % id, json=payload)
+    requests.put('%s/employee/%s' % (service_url, id), json=payload)
     return redirect('index')
 
 def delete(request, id):
-    requests.delete('http://localhost:8000/employee/%s' % id)
+    requests.delete('%s/employee/%s' % (service_url, id))
     return redirect('index')
