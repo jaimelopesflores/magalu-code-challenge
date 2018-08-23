@@ -190,5 +190,5 @@ Must be generated automatically with a framework like Swagger for example. Any c
 We have a body validation in POST and PUT request to the service api. Can be improved with regexes (for the e-mail for example).
 Validations for the path parameters are also needed.
 
-### Docker imagege size improvement
+### Docker image size improvement
 The Docker images must be improved in size (using multi-stage build) and uptime for a performatic scale.
