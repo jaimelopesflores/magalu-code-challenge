@@ -28,6 +28,7 @@ def create(request):
         'department': request.POST['department'] ,
     }
     requests.post('%s/employee' % service_url, json=payload)
+    print('User created')
     return redirect('index')
 
 def edit(request, id):
@@ -42,8 +43,10 @@ def update(request, id):
         'department': request.POST['department'] ,
     }
     requests.put('%s/employee/%s' % (service_url, id), json=payload)
+    print('User updated')
     return redirect('index')
 
 def delete(request, id):
     requests.delete('%s/employee/%s' % (service_url, id))
+    print('User deleted')
     return redirect('index')
