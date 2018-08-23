@@ -1,0 +1,39 @@
+{% extends 'employees/base.html' %}
+
+{% block title %}
+    Employees
+{% endblock %}
+{% block content %}
+<form>
+  <a class="btn btn-primary" href="/employees/new">New</a>
+</form>
+<table class="table table-bordered">
+  <thead >
+    <tr class="table-primary">
+      <th scope="col">Name</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Department</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% if employee_list %}
+      {% for employee in employee_list %}
+        <tr>
+          <th scope="row"><a href="/employees/{{ employee.id }}/detail/">{{ employee.name }}</a></th>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.department }}</td>
+        </tr>
+      {% endfor %}
+    {% else %}
+      <tr >
+        <td colspan="3">
+            <i>No employees to show.</i>
+        </td>
+      </tr>
+    {% endif %}
+
+  </tbody>
+</table>
+{% endblock %}
+

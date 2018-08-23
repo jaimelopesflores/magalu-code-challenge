@@ -1,0 +1,28 @@
+
+{% extends 'employees/base.html' %}
+
+{% block title %}
+    Updating employee
+{% endblock %}
+{% block content %}
+<form action="{% url 'update' employee.id %}" method="post">
+    {% csrf_token %}
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="name">Name:</label>
+        <input required class="col-10 form-control" type="text" name="name" id="name" placeholder="What's your name?" value="{{ employee.name }}"/><br />
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="email">E-mail:</label>
+        <input required class="col-10 form-control" type="email" name="email" id="email" placeholder="And your e-mail?" value="{{ employee.email }}"/><br />
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="department">Department:</label>
+        <input required class="col-10 form-control" type="text" name="department" id="department" placeholder="In which department do you work?" value="{{ employee.department }}"/><br />
+    </div>
+
+    <input class="btn btn-primary" type="submit" value="Save"/>
+    <a class="btn btn-default" href="/employees/{{ employee.id }}/detail">Cancel</a>
+</form>
+{% endblock %}
