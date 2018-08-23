@@ -14,7 +14,6 @@ This challenge solves the "growing team" problem from Luizalabs.
 * flask 1.0.2
 * docker 18.03.1-ce
 * docker-compose 1.21.1
-* 
 
 
 **Pre-setup to development environment**
@@ -40,11 +39,11 @@ Can be found in _./service/requirements.txt_ and _./frontend/requirements.txt_
 
 ## Service
 
-Is an entity-based microservice in Flask that provide an employee syncronous api.
+Is an entity-based microservice in Flask that provides an employee syncronous api.
 
 ### Running the microservice
 
-Go to directory _services_ from the repo root:
+Go to directory _service_ from the repo root:
 ```bash
 cd service
 ```
@@ -173,7 +172,7 @@ There is a list of initial improvements that can be made.
 Tests are indispensable if you want to have a stable and reliable microservice. In this project only 2 unit tests were implemented. The test suite must cover almost all the code of an app to be almost totally sensitive to changes.
 
 ### Logging
-The logging is being done with _print_s in this project. For a good monitoring, rich logs are essential.
+There are poor logs (using print) this projects. For a good monitoring, rich and structured logs are essential.
 
 ### Security
 I did not implemented security at all (Django has a built-in security module). At the least for the service api some JWT or Basic Auth validation should be implemented.
@@ -185,7 +184,7 @@ A microservice is not necessarily micro in features. Once the application grows,
 The configurations are being done through env files. This is not a bad pratice at all when you do not have a large microservices ecosystem. The picture change when you have to have your ecosystem in a high availability environment where you can scale indeterminately. The best choice in this cases is to have a configuration server.
 
 ### API docs
-Must be generated automatically with a framework like Swagger for example. Any change reflect in the docs by itself.
+Must be generated automatically with a framework like Swagger for example. Any changes in the api code reflect in the docs by itself.
 
 ### Schema validation
 We have a body validation in POST and PUT request to the service api. Can be improved with regexes (for the e-mail for example).
